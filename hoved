@@ -39,11 +39,9 @@ DeviceAddress Probe02 = { 0x28, 0xFF, 0xCB, 0xDB, 0x30, 0x17, 0x04, 0xB2 };
 #define REST 12
 
 // Nye parameter/variabler som brukes til temp regulering/styring
-#define Prop
-#define Avvik
+#define tempAvvik
 #define settPunkt
 #define heatTrue
-#define heatFalse
 #define tempProbe01
 #define tempProbe02
 
@@ -67,7 +65,7 @@ void setup()   /****** SETUP: RUNS ONCE ******/
   pinMode(COOL, OUTPUT);
   pinMode(REST, OUTPUT);
 
-}//--(end setup )---
+}
 
 void loop()   /****** LOOP: RUNS CONSTANTLY ******/
 {
@@ -88,26 +86,31 @@ void loop()   /****** LOOP: RUNS CONSTANTLY ******/
   Serial.print("Probe 02 temperature is:   ");
   tempProbe02 = getTemperature(Probe02); // Kaller funksjon og får en tempavlesing tilbake
   Serial.println();
- 
-   
   
-}//--(end main loop )---
+}
 
 /*-----( Funksjonsdeklarering )-----*/
 
-void tempStyring(settPunkt, tempProbe) // Funksjon for styring av temperatur
-{
+boolean tempStyring(settPunkt, tempProbe){ 
+// Funksjon for styring av temperatur. Dersom avviket er positivt så må temperaturen i skapet økes. 
+// Dersom avviket er negativt så må temperaturen reduseres. 
 
+tempAvvik = settPunkt - tempProbe; 
 
-
+  if ( tempAvvik >= 0) {
+    heatTrue = true;
+    }
+  else
+    {
+    heatTrue = false;
+    }
+  
 }
-
-
 
 float getTemperature(DeviceAddress deviceAddress) // Endret til å returnere en float verdi
 {
 
-float tempC = sensors.getTempC(deviceAddress);
+ float tempC = sensors.getTempC(deviceAddress);
 
    if (tempC == -127.00) 
    {
@@ -117,9 +120,8 @@ float tempC = sensors.getTempC(deviceAddress);
    {
    Serial.print("C: ");
    Serial.print(tempC);
-   
-return tempC;   // Returnert verdi
-
    }
+   
+ return tempC;   // Returnert verdi
 }// End printTemperature
 //*********( THE END )***********
