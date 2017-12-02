@@ -39,14 +39,14 @@ DeviceAddress Probe02 = { 0x28, 0xFF, 0xCB, 0xDB, 0x30, 0x17, 0x04, 0xB2 };
 #define REST 12
 
 // Nye parameter/variabler som brukes til temp regulering/styring
-  float tempAvvik
-  float settPunkt
-  boolean heatTrue
-  float tempProbe01
-  float tempProbe02
-  boolean heating
-  float sP
-  float tempProbe
+float tempAvvik;
+float settPunkt;
+boolean heatTrue;
+float tempProbe01;
+float tempProbe02;
+boolean heating;
+float sP;
+float tempProbe;
 
 
 void setup()   /****** SETUP: RUNS ONCE ******/
