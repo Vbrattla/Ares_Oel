@@ -107,7 +107,7 @@ void loop()   /****** LOOP: RUNS CONSTANTLY ******/
 
 /*-----( Funksjonsdeklarering )-----*/
 
-boolean tempStyring(sP, tempProbe){ 
+boolean tempStyring(float sP, float tempProbe){ 
 // Funksjon for styring av temperatur. Dersom avviket er positivt så må temperaturen i skapet økes. 
 // Dersom avviket er negativt så må temperaturen reduseres. 
 
