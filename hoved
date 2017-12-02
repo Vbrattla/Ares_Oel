@@ -45,7 +45,7 @@ boolean heatTrue;
 float tempProbe01;
 float tempProbe02;
 boolean heating;
-float sP;
+float sP = 20;
 float tempProbe;
 
 
